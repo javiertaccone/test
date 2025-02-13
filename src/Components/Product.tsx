@@ -1,0 +1,54 @@
+import { Product as ProductModel } from "../Models/Product.model"
+import { useContext } from "react"
+import { ProductsContext } from "../App"
+
+interface ProductProps {
+    product: ProductModel
+}
+
+function Product({ product }: ProductProps) {
+
+    const context = useContext(ProductsContext)
+
+    const truncatedDescription = product.productDescription.length > 180
+        ? product.productDescription.substring(0, 180) + "..."
+        : product.productDescription
+
+
+    return (
+        <>
+            <div key={product.id} className="relative flex w-full flex-col rounded-lg border border-gray-100 bg-white shadow-md">
+                <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
+                    <img className="object-cover" src={product.image_url} alt={product.productName} />
+                    <svg onClick={() => context?.modifyFav(product.id, product.favorite)}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill={Number(product.favorite) === 1 ? "yellow" : "gray"}
+                        className="star-icon absolute top-0 left-0 m-2"
+                    >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                </div>
+                <div className="flex flex-col flex-grow pt-4 px-5 pb-5">
+                    <div className="h-13">
+                        <h5 className="text-xl tracking-tight text-slate-900">{product.productName}</h5>
+                    </div>
+                    <div className="mb-2 flex items-center justify-between">
+                        <p className="text-slate-900">Left: {product.stock}</p>
+                        <span className="text-3xl font-bold text-slate-900">{product.price}€</span>
+                    </div>
+                    <p className="text-sm text-slate-400 leading-none">{truncatedDescription}</p>
+                    <div className="mt-auto pt-4"> 
+                        <button onClick={() => context?.modifyStock(product.id, true)}
+                            className="rounded-md bg-slate-900 w-full py-2 text-sm font-medium text-white hover:bg-gray-700">
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+export default Product
