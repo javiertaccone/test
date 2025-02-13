@@ -56,7 +56,7 @@ function Cart() {
           </div>
         ))}
       </div>
-      <h5 className="flex mt-5 justify-end text-2xl tracking-tight font-bold text-slate-900">Total: {cartTotal}€</h5>
+      <h5 className="flex mt-5 md:justify-end text-2xl tracking-tight font-bold text-slate-900">Total: {cartTotal}€</h5>
     </div>
   )
 }

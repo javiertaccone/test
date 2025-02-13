@@ -14,11 +14,10 @@ function Product({ product }: ProductProps) {
         ? product.productDescription.substring(0, 180) + "..."
         : product.productDescription
 
-
     return (
         <>
             <div key={product.id} className="relative flex w-full flex-col rounded-lg border border-gray-100 bg-white shadow-md">
-                <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
+                <div className="relative mx-3 mt-3 flex overflow-hidden rounded-xl">
                     <img className="object-cover" src={product.image_url} alt={product.productName} />
                     <svg onClick={() => context?.modifyFav(product.id, product.favorite)}
                         xmlns="http://www.w3.org/2000/svg"
@@ -31,13 +30,13 @@ function Product({ product }: ProductProps) {
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                     </svg>
                 </div>
-                <div className="flex flex-col flex-grow pt-4 px-5 pb-5">
-                    <div className="h-13">
-                        <h5 className="text-xl tracking-tight text-slate-900">{product.productName}</h5>
+                <div className="flex flex-col flex-grow md:pt-4 pt-2 md:px-5 px-2 pb-5">
+                    <div className="md:h-13 h:9">
+                        <h5 className="md:text-xl tracking-tight leading-tight text-slate-900">{product.productName}</h5>
                     </div>
-                    <div className="mb-2 flex items-center justify-between">
+                    <div className="md:mb-2 mb-0.5 flex items-center justify-between">
                         <p className="text-slate-900">Left: {product.stock}</p>
-                        <span className="text-3xl font-bold text-slate-900">{product.price}€</span>
+                        <span className="md:text-3xl text-xl font-bold text-slate-900">{product.price}€</span>
                     </div>
                     <p className="text-sm text-slate-400 leading-none">{truncatedDescription}</p>
                     <div className="mt-auto pt-4"> 
