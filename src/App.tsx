@@ -4,13 +4,7 @@ import { ReactNode } from 'react'
 import { createContext, useState, useEffect } from 'react'
 import { fetchProducts, updateFavorite, updateStock } from './Services/Product.services'
 import Page from './Components/Page'
-
-interface ProductsContextType {
-  products: ProductModel[]
-  cart: ProductModel[]
-  modifyStock: (productId: string, add: boolean) => void
-  modifyFav: (productId: string, currentFavorite: string | number) => void
-}
+import { ProductsContextType } from './Interfaces/interfaces'
 
 export const ProductsContext = createContext<ProductsContextType | undefined>(undefined)
 
@@ -82,7 +76,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({ children }
   const modifyFav = async (productId: string, currentFavorite: string | number) => {
 
     try {
-      const newFavorite = currentFavorite === "1" || currentFavorite === 1 ? 0 : "1";
+      const newFavorite = currentFavorite == 1 ? 0 : "1"
       await updateFavorite(productId, newFavorite);
       setProducts((prevProducts) =>
         prevProducts.map((product) =>
