@@ -1,4 +1,3 @@
-import './App.css'
 import { Product as ProductModel } from './Models/Product.model'
 import { ReactNode } from 'react'
 import { createContext, useState, useEffect } from 'react'
