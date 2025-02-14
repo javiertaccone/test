@@ -44,12 +44,15 @@ function ProductsList() {
 
   return (
     <div className="md:m-8 m-5">
-      <button onClick={() => setFilterFav(!filterFav)}
-        className="hidden md:block rounded-md ml-3 bg-slate-900 w-35 mb-2 py-2 text-sm font-medium text-white hover:bg-gray-700">
-        {filterFav ? "Mostrar Todos" : "Mostrar Favoritos"}
-      </button>
       <div className="flex flex-col items-end">
         <div className="grid grid-cols-2 md:grid-cols-4 md:gap-10 gap-4 max-w-6xl">
+          <div className="col-span-4">
+            <button
+              onClick={() => setFilterFav(!filterFav)}
+              className="hidden md:block rounded-md ml-3 bg-slate-900 w-35 py-2 text-sm font-medium text-white hover:bg-gray-700">
+              {filterFav ? "Mostrar Todos" : "Mostrar Favoritos"}
+            </button>
+          </div>
           {visibleProducts.map((product) => (
             <Product key={product.id} product={product} />
           ))}
